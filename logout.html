@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-form">
+          <p>Are You Sure?</p>
+          <button id="yes">Yes</button><br />
+          <button id="no">No</button>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCeP0pmsODLvlauIiZl_nZE9YmeAa-iuzw",
+            authDomain: "marcus-quizes.firebaseapp.com",
+            projectId: "marcus-quizes",
+            storageBucket: "marcus-quizes.appspot.com",
+            messagingSenderId: "598780768983",
+            appId: "1:598780768983:web:c54d285002b4b1ececb692"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById('yes').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                // An error happened.
+                console.error("Error signing out:", error);
+            });
+        });
+
+        document.getElementById('no').addEventListener('click', () => {
+            // Redirect to quiz.html
+            window.location.href = 'quiz.html';
+        });
+    </script>
+    
+</body>
+</html>
